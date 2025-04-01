@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+    </a>
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a href="football.html" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Главная</a>
+        </li>
+        <li>
+          <a href="about.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">О футболе</a>
+        </li>
+        <li>
+          <a href="prise.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Цены</a>
+        </li>
+        <li>
+          <a href="schedule.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Расписание</a>
+        </li>
+        <li>
+          <a href="Contact.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Контакты</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="flex flex-col items-center justify-center mt-16 space-y-8 lg:flex-row lg:items-stretch lg:space-x-8 lg:space-y-0">
+      <template x-for="(plan, i) in plans" x-key="i">
+        <section class="flex flex-col w-full max-w-sm p-12 space-y-6 bg-white rounded-lg shadow-md">
+          <!-- Price -->
+          <div class="flex-shrink-0">
+            <span class="text-4xl font-medium tracking-tight" :class="plan.name == 'Basic' ? 'text-green-500' : ''" x-text="`$${billPlan == 'monthly' ? plan.price.monthly : plan.price.annually}`"></span>
+            <span class="text-gray-400" x-text="billPlan == 'monthly' ? '/month' : '/year'"></span>
+          </div>
+
+          <!--  -->
+          <div class="flex-shrink-0 pb-6 space-y-2 border-b">
+            <h2 class="text-2xl font-normal" x-text="plan.name"></h2>
+            <p class="text-sm text-gray-400" x-text="plan.discretion"></p>
+          </div>
+
+          <!-- Features -->
+          <ul class="flex-1 space-y-4">
+            <template x-for="(feature, i) in plan.features" x-key="i">
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature"></span>
+              </li>
+            </template>
+          </ul>
+
+          <!-- Button -->
+          <div class="flex-shrink-0 pt-4">
+            <button class="inline-flex items-center justify-center w-full max-w-xs px-4 py-2 transition-colors border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" :class="plan.name == 'Basic' ? 'bg-indigo-500 text-white hover:bg-indigo-700' : 'hover:bg-indigo-500 hover:text-white'" x-text="`Get ${plan.name}`"></button>
+          </div>
+        </section>
+      </template>
+
+        <section class="flex flex-col w-full max-w-sm p-12 space-y-6 bg-white rounded-lg shadow-md">
+          <!-- Price -->
+          <div class="flex-shrink-0">
+            <span class="text-4xl font-medium tracking-tight" :class="plan.name == 'Basic' ? 'text-green-500' : ''" x-text="`$${billPlan == 'monthly' ? plan.price.monthly : plan.price.annually}`">3000₽</span>
+            <span class="text-gray-400" x-text="billPlan == 'monthly' ? '/month' : '/year'">/Месяц</span>
+          </div>
+
+          <!--  -->
+          <div class="flex-shrink-0 pb-6 space-y-2 border-b">
+            <h2 class="text-2xl font-normal" x-text="plan.name">Обычная</h2>
+            <p class="text-sm text-gray-400" x-text="plan.discretion">Данная тренировка для новичков, или для себя.</p>
+          </div>
+
+          <!-- Features -->
+          <ul class="flex-1 space-y-4">
+            <template x-for="(feature, i) in plan.features" x-key="i">
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature"></span>
+              </li>
+            </template>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Три тренировки в неделю.</span>
+              </li>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Изучение новых технологии в футболе.</span>
+              </li>
+            </ul>
+
+          <!-- Button -->
+          <div class="flex-shrink-0 pt-4">
+            <button class="inline-flex items-center justify-center w-full max-w-xs px-4 py-2 transition-colors border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-indigo-500 hover:text-white" :class="plan.name == 'Basic' ? 'bg-indigo-500 text-white hover:bg-indigo-700' : 'hover:bg-indigo-500 hover:text-white'" x-text="`Get ${plan.name}`">Купить</button>
+          </div>
+        </section>
+
+        <section class="flex flex-col w-full max-w-sm p-12 space-y-6 bg-white rounded-lg shadow-md">
+          <!-- Price -->
+          <div class="flex-shrink-0">
+            <span class="text-4xl font-medium tracking-tight text-green-500" :class="plan.name == 'Basic' ? 'text-green-500' : ''" x-text="`$${billPlan == 'monthly' ? plan.price.monthly : plan.price.annually}`">5000₽</span>
+            <span class="text-gray-400" x-text="billPlan == 'monthly' ? '/month' : '/year'">/ Месяц</span>
+          </div>
+
+          <!--  -->
+          <div class="flex-shrink-0 pb-6 space-y-2 border-b">
+            <h2 class="text-2xl font-normal" x-text="plan.name">Для профи</h2>
+            <p class="text-sm text-gray-400" x-text="plan.discretion">Тренировка для профессионалов.</p>
+          </div>
+
+          <!-- Features -->
+          <ul class="flex-1 space-y-4">
+            <template x-for="(feature, i) in plan.features" x-key="i">
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature"></span>
+              </li>
+            </template>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Четыре тренировки в неделю</span>
+              </li>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Повторение</span>
+              </li>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Бесплатные турниры в разных странах и городах</span>
+              </li>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Участвие в кастинге в футбольные команды</span>
+              </li>
+            </ul>
+
+          <!-- Button -->
+          <div class="flex-shrink-0 pt-4">
+            <button class="inline-flex items-center justify-center w-full max-w-xs px-4 py-2 transition-colors border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-indigo-500 text-white hover:bg-indigo-700" :class="plan.name == 'Basic' ? 'bg-indigo-500 text-white hover:bg-indigo-700' : 'hover:bg-indigo-500 hover:text-white'" x-text="`Get ${plan.name}`">Купить</button>
+          </div>
+        </section>
+
+        <section class="flex flex-col w-full max-w-sm p-12 space-y-6 bg-white rounded-lg shadow-md">
+          <!-- Price -->
+          <div class="flex-shrink-0">
+            <span class="text-4xl font-medium tracking-tight" :class="plan.name == 'Basic' ? 'text-green-500' : ''" x-text="`$${billPlan == 'monthly' ? plan.price.monthly : plan.price.annually}`">4000₽</span>
+            <span class="text-gray-400" x-text="billPlan == 'monthly' ? '/month' : '/year'">/Месяц</span>
+          </div>
+
+          <!--  -->
+          <div class="flex-shrink-0 pb-6 space-y-2 border-b">
+            <h2 class="text-2xl font-normal" x-text="plan.name">Классическая</h2>
+            <p class="text-sm text-gray-400" x-text="plan.discretion">Тренировка для опытных футболистов.</p>
+          </div>
+
+          <!-- Features -->
+          <ul class="flex-1 space-y-4">
+            <template x-for="(feature, i) in plan.features" x-key="i">
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature"></span>
+              </li>
+            </template>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Три тренировки в неделю</span>
+              </li>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Игры на турнирах</span>
+              </li>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Участвие в кастинге в футбольный клуб</span>
+              </li>
+
+              <li class="flex items-start">
+                <svg class="w-6 h-6 text-green-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-3 text-base font-medium" x-text="feature">Изучение и повторение технологий</span>
+              </li>
+            </ul>
+
+          <!-- Button -->
+          <div class="flex-shrink-0 pt-4">
+            <button class="inline-flex items-center justify-center w-full max-w-xs px-4 py-2 transition-colors border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-indigo-500 hover:text-white" :class="plan.name == 'Basic' ? 'bg-indigo-500 text-white hover:bg-indigo-700' : 'hover:bg-indigo-500 hover:text-white'" x-text="`Get ${plan.name}`">Купить</button>
+          </div>
+        </section>
+      </div>
+
+</body>
+</html>
+
