@@ -41,56 +41,170 @@
   </div>
 </nav>
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Футбольные новости</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .news-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .news-section h2 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .news-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-item h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        .news-item p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .news-item a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <!-- Секция новостей -->
+    <section class="news-section" id="news">
+        <h2>Последние новости</h2>
+        <div id="news-container">
+            <!-- Новости будут загружаться сюда -->
+            <p class="loading">Загрузка новостей...</p>
+        </div>
+    </section>
+
+    <script>
+        // Массив с примерными новостями (можно заменить на данные из API)
+        const newsData = [
+            {
+                title: "Роналду установил новый рекорд",
+                description: "Криштиану Роналду забил свой 800-й гол в карьере, установив новый мировой рекорд.",
+                link: "https://example.com/news/ronaldo-record"
+            },
+            {
+                title: "Месси выиграл Чемпионат мира",
+                description: "Лионель Месси наконец-то завоевал титул чемпиона мира, принеся победу Аргентине.",
+                link: "https://example.com/news/messi-world-cup"
+            },
+            {
+                title: "Новый тренер Реала",
+                description: "Карло Анчелотти назначен главным тренером Реала Мадрид на следующий сезон.",
+                link: "https://example.com/news/new-real-coach"
+            }
+        ];
+
+        // Функция для отображения новостей
+        function displayNews() {
+            const newsContainer = document.getElementById("news-container");
+            newsContainer.innerHTML = ""; // Очищаем контейнер
+
+            if (newsData.length === 0) {
+                newsContainer.innerHTML = "<p>Нет доступных новостей.</p>";
+                return;
+            }
+
+            // Создаем элементы для каждой новости
+            newsData.forEach(news => {
+                const newsItem = document.createElement("div");
+                newsItem.classList.add("news-item");
+
+                const title = document.createElement("h3");
+                title.textContent = news.title;
+
+                const description = document.createElement("p");
+                description.textContent = news.description;
+
+                const link = document.createElement("a");
+                link.href = news.link;
+                link.textContent = "Читать далее";
+
+                newsItem.appendChild(title);
+                newsItem.appendChild(description);
+                newsItem.appendChild(link);
+
+                newsContainer.appendChild(newsItem);
+            });
+        }
+
+        // Загрузка новостей при запуске страницы
+        window.onload = function () {
+            setTimeout(displayNews, 1000); // Имитация задержки загрузки
+        };
+    </script>
 </body>
+</html>
 
 
-<div id="indicators-carousel" class="relative w-full" data-carousel="static">
-    <!-- Carousel wrapper -->
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-         <!-- Item 1 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <img src="/docs/images/carousel/carousel-1.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+<footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4">
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <a href="" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <img src="" class="h-8" alt="" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                <li>
+                    <a href="index.html" class="hover:underline me-4 md:me-6">Главная</a>
+                </li>
+                <li>
+                    <a href="prise.html" class="hover:underline me-4 md:me-6">Цены</a>
+                </li>
+                <li>
+                    <a href="schedule.html" class="hover:underline me-4 md:me-6">Расписание</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="hover:underline">Контакты</a>
+                </li>
+            </ul>
         </div>
-        <!-- Item 2 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 3 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-3.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 4 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-4.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 5 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-5.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="https://football2-dd6v.onrender.com/" class="hover:underline">FootClub™</a>. Все права защищены.</span>
     </div>
-    <!-- Slider indicators -->
-    <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-    </div>
-    <!-- Slider controls -->
-    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-            </svg>
-            <span class="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-            <span class="sr-only">Next</span>
-        </span>
-    </button>
-</div>
+</footer>
+
